@@ -54,6 +54,12 @@ class Book(models.Model):
         # (admin에서 VIEW ON SITE 버튼 활성화)
         return reverse('book-detail', args=[str(self.id)])
 
+    def display_genre(self):
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+
+    # short_description: admin에서 출력되는 field의 label 커스터마이징할 때 사용
+    display_genre.short_description = 'Genre'
+
 class BookInstance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='전체 도서관의 특정 책에 대한 고유한 ID')
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
