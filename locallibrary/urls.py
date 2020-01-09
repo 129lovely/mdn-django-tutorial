@@ -27,6 +27,7 @@ urlpatterns = [
 # domain/catalog로 시작되는 request가 오면
 # catalog/urls.py를 참조해서 관련 파일을 mapping하겠다는 의미
 urlpatterns += [
+    # catalog/로 시작하는 URL을 받으면 catalog.urls가 나머지 문자열 처리 
     path('catalog/', include('catalog.urls')),
 ]
 
